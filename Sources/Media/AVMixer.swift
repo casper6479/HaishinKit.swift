@@ -6,7 +6,7 @@ import AVFoundation
     }
 #endif
 
-protocol AVMixerDelegate: class {
+public protocol AVMixerDelegate: class {
     func didOutputAudio(_ buffer: AVAudioPCMBuffer, presentationTimeStamp: CMTime)
     func didOutputVideo(_ buffer: CMSampleBuffer)
 }
@@ -119,7 +119,16 @@ public class AVMixer {
         }
     }
 
-    weak var delegate: AVMixerDelegate?
+    public func start() {
+        videoIO.context = CIContext()
+        startRunning()
+//        stream.lockQueue.async {
+//            videoIO.renderer = self
+//            stream.mixer.startRunning()
+//        }
+    }
+    
+    public weak var delegate: AVMixerDelegate?
 
     private var _recorder: AVRecorder?
     /// The recorder instance.
