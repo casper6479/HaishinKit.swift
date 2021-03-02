@@ -128,6 +128,10 @@ public class AVMixer {
 //        }
     }
     
+    public func appendVideoBuffer(sample: CMSampleBuffer) {
+        videoIO.encodeSampleBuffer(sample)
+    }
+    
     public weak var delegate: AVMixerDelegate?
 
     private var _recorder: AVRecorder?
